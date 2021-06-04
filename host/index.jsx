@@ -40,21 +40,6 @@ function randomizeFrames(labelColour) {
     framesBin.deleteBin();
 }
 
-/*
-| theVideo |     
-The ProjectItem video that you want to set the in-point and out-point of.
-
-| inPoint | 
-Input the frame number e.g. 36. Video frame index starts at zero.
-
-| outPoint |
-Input the frame number e.g. 36.
-*/
-function setInAndOut(theVideo, inPoint, outPoint) {
-    theVideo.setInPoint(framesToSeconds(inPoint, FRAME_RATE));
-    theVideo.setOutPoint(framesToSeconds(outPoint, FRAME_RATE));
-}
-
 function secondsToFrames(seconds, frameRate) {
     frames = seconds * frameRate;
     return Math.round(frames);
