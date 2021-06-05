@@ -18,7 +18,10 @@ function randomizeFrames() {
   filmIcon3.style.animation= "swap-3 0.7s infinite"
 
   // 7 is the colour
-  csInterface.evalScript("randomizeFrames(15)");
+
+
+  const framesPerCut = document.getElementById("frames-per-cut-input").value;
+  csInterface.evalScript("randomizeFrames("+ framesPerCut + ", 15)");
 
 
   // End frame swapping animation

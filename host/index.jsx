@@ -1,32 +1,34 @@
 ﻿var project = app.project;
 mainBin = project.rootItem.createBin("Randomized Frames");
 
-function randomizeFrames(labelColour) {
+function randomizeFrames(framesPerCut, labelColour) {
 
     FRAME_RATE = (1 / project.activeSequence.getSettings().videoFrameRate.seconds).toFixed(3); 
     theClip = project.activeSequence.getSelection();
     clipInFrame = secondsToFrames(theClip[0].inPoint.seconds, FRAME_RATE);
     framesBin = mainBin.createBin("Temp");
     usedFramesBin = mainBin.createBin(theClip[0].name + " Frames"); 
-    frameCount = secondsToFrames(theClip[0].duration.seconds, FRAME_RATE);
+    numFrames = secondsToFrames(theClip[0].duration.seconds, FRAME_RATE);
+    numChunks = numFrames / framesPerCut;
     
-    for(i = 0; i < frameCount; i++) {
-        startTime = framesToSeconds(i + clipInFrame, FRAME_RATE);
-        endTime = framesToSeconds (i + clipInFrame + 1, FRAME_RATE);
+    // Creates subclips
+    for(i = 0; i < numChunks; i++) {
+        startTime = framesToSeconds(i * framesPerCut + clipInFrame, FRAME_RATE);
+        endTime = framesToSeconds (i * framesPerCut + clipInFrame + framesPerCut, FRAME_RATE);
         clipFrame = theClip[0].projectItem.createSubClip(i + " " + theClip[0].name, startTime, endTime , 0);
         clipFrame.setColorLabel(labelColour);
         clipFrame.moveBin(framesBin);
     }
     
-    maxFrameCount = frameCount;
+    maxFrameCount = numChunks;
     for(i = 0; i < maxFrameCount; i++) {
-        randIndex = Math.round(Math.random() * frameCount) - 1;
+        randIndex = Math.round(Math.random() * numChunks) - 1;
         if (randIndex < 0) randIndex = 0; 
         
         project.activeSequence.videoTracks[0].insertClip(framesBin.children[randIndex], theClip[0].start);
     
         framesBin.children[randIndex].moveBin(usedFramesBin);
-        frameCount--;
+        numChunks--;
     }
     
     for (i = 0; i < theClip.length; i++) {
