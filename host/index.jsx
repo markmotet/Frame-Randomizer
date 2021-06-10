@@ -8,6 +8,7 @@ function randomizeFrames(framesPerCut, labelColour) {
     clipInFrame = secondsToFrames(theClip[0].inPoint.seconds, FRAME_RATE);
     framesBin = mainBin.createBin("Temp");
     usedFramesBin = mainBin.createBin(theClip[0].name + " Frames"); 
+    usedFramesBin.setColorLabel(labelColour);
     numFrames = secondsToFrames(theClip[0].duration.seconds, FRAME_RATE);
     numChunks = numFrames / framesPerCut;
     
@@ -20,11 +21,12 @@ function randomizeFrames(framesPerCut, labelColour) {
         clipFrame.moveBin(framesBin);
     }
     
+    // Insert subclips onto timeline
     maxFrameCount = numChunks;
-    for(i = 0; i < maxFrameCount; i++) {
+    for (i = 0; i < maxFrameCount; i++) {
         randIndex = Math.round(Math.random() * numChunks) - 1;
         if (randIndex < 0) randIndex = 0; 
-        
+
         project.activeSequence.videoTracks[0].insertClip(framesBin.children[randIndex], theClip[0].start);
     
         framesBin.children[randIndex].moveBin(usedFramesBin);

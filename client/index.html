@@ -16,9 +16,36 @@
 
     <button id="apply-button" class="button">Apply</button>
 
-    <input id="frames-per-cut-input" type="number" min="1">
+    <form>
+        <label for="frames-per-cut-input">Frames Per Cut</label>
+        <input id="frames-per-cut-input" class="input-field" type="number" min="1" value="1">
 
-    <!-- For color dropdown: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover-->
+        <label for="colour-input">Colour</label>
+        <select id="colour-input" class="input-field">
+            <option value="0">Violet</option>
+            <option value="1">Iris</option>
+            <option value="2">Caribbean</option>
+            <option value="3">Lavender</option>
+            <option value="4">Cerulean</option>
+            <option value="5">Forest</option>
+            <option value="6">Rose</option>
+            <option value="7">Mango</option>
+            <option value="8">Purple</option>
+            <option value="9">Blue</option>
+            <option value="10">Teal</option>
+            <option value="11">Magenta</option>
+            <option value="12">Tan</option>
+            <option value="13">Green</option>
+            <option value="14">Brown</option>
+            <option value="15">Yellow</option>
+        </select>
+    </form>
+
+
+
+    
+
+    <!-- Tutorial for a dropdown menu: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover-->
 
     <!-- Script dependencies -->
     <script type="text/javascript" src="CSInterface.js"></script>

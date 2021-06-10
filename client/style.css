@@ -15,6 +15,26 @@ h1 {
     color: #8a8a8a;
 }
 
+.input-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+
+    border: 2px solid #313131;
+    border-radius: 4px;
+
+    background-color: #161616;
+    color: white;
+}
+
+label {
+    font-family: adobeCleanRegular;
+    font-size: 10;
+    text-align: center;
+    color: #8a8a8a; 
+}
+
 #film-icon-container {
     display: flex;
     justify-content: center;

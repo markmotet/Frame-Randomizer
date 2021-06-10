@@ -17,18 +17,19 @@ function randomizeFrames() {
   filmIcon2.style.animation= "swap-2 0.7s infinite"
   filmIcon3.style.animation= "swap-3 0.7s infinite"
 
-  // 7 is the colour
-
-
   const framesPerCut = document.getElementById("frames-per-cut-input").value;
-  csInterface.evalScript("randomizeFrames("+ framesPerCut + ", 15)");
+  const colour = document.getElementById("colour-input").value;
 
+  inputString = "randomizeFrames(";
+  inputString = inputString + framesPerCut + ","
+  inputString = inputString + colour
+  inputString = inputString + ")"
+
+  csInterface.evalScript(inputString);
 
   // End frame swapping animation
-
-  /*
   filmIcon1.style.animation= "swap-1 0.7s"
   filmIcon2.style.animation= "swap-2 0.7s"
   filmIcon3.style.animation= "swap-3 0.7s"
-  */
+
 }
