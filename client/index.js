@@ -14,17 +14,19 @@ function randomizeFrames() {
   const filmIcon3 = document.getElementById("film-icon-3");
 
   // Start frame swapping animation
-  filmIcon1.style.animation= "swap-1 0.7s infinite"
-  filmIcon2.style.animation= "swap-2 0.7s infinite"
-  filmIcon3.style.animation= "swap-3 0.7s infinite"
+  filmIcon1.style.animation = "swap-1 0.7s infinite";
+  filmIcon2.style.animation = "swap-2 0.7s infinite";
+  filmIcon3.style.animation = "swap-3 0.7s infinite";
 
   const framesPerCut = document.getElementById("frames-per-cut-input").value;
   const colour = document.getElementById("colour-input").value;
 
-  csInterface.evalScript("randomizeFrames()");
+  var inputString = "randomizeFrames(" + framesPerCut + ")";
+
+  csInterface.evalScript(inputString);
 
   // End frame swapping animation
-  filmIcon1.style.animation= "swap-1 0.7s"
-  filmIcon2.style.animation= "swap-2 0.7s"
-  filmIcon3.style.animation= "swap-3 0.7s"
+  filmIcon1.style.animation = "swap-1 0.7s";
+  filmIcon2.style.animation = "swap-2 0.7s";
+  filmIcon3.style.animation = "swap-3 0.7s";
 }
