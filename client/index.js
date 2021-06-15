@@ -2,11 +2,9 @@
 var csInterface = new CSInterface();
 
 /* 2) Make a reference to your HTML button and add a click handler. */
-var openButton = document.querySelector("#apply-button");
-openButton.addEventListener("click", randomizeFrames);
+var applyButton = document.querySelector("#apply-button");
+applyButton.addEventListener("click", randomizeFrames);
 
-var openButton = document.querySelector("#test-button");
-openButton.addEventListener("click", test);
 
 /* 3) Write a helper function to pass instructions to the ExtendScript side. */
 function randomizeFrames() {
@@ -23,20 +21,10 @@ function randomizeFrames() {
   const framesPerCut = document.getElementById("frames-per-cut-input").value;
   const colour = document.getElementById("colour-input").value;
 
-  inputString = "randomizeFrames(";
-  inputString = inputString + framesPerCut + ","
-  inputString = inputString + colour
-  inputString = inputString + ")"
-
-  csInterface.evalScript(inputString);
+  csInterface.evalScript("randomizeFrames()");
 
   // End frame swapping animation
   filmIcon1.style.animation= "swap-1 0.7s"
   filmIcon2.style.animation= "swap-2 0.7s"
   filmIcon3.style.animation= "swap-3 0.7s"
-
-}
-
-function test() {
-  csInterface.evalScript(test());
 }
