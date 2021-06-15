@@ -13,7 +13,7 @@ function randomizeFrames(framesPerCut) {
             var inTime = framesToSeconds(i) + theClip[0].inPoint.seconds;
             var outTime = framesToSeconds(i + framesPerCut) + theClip[0].inPoint.seconds;
             
-            //  Ensures that the duration stays the same if numFrames is not divisible by framesPerCut
+            // Ensures that the duration stays the same if numFrames is not divisible by framesPerCut
             // Note: one segment might be fewer than framesPerCut frames long
              if (outTime > theClip[0].outPoint.seconds) {
                 outTime = theClip[0].outPoint.seconds;
@@ -23,6 +23,9 @@ function randomizeFrames(framesPerCut) {
         }
     
         // Insert a random frame and remove the frame from frameArray to prevent duplicates
+        
+        //project.createNewSequenceFromClips("Name", theClip[0].projectItem);
+        
         const length = frameArray.length
         for (i = 0; i < length; i++) {
             var randIndex = Math.ceil( (length - i) * Math.random()) - 1;
@@ -32,8 +35,8 @@ function randomizeFrames(framesPerCut) {
             
             var outTime =  frameArray[randIndex].outTime;
             theClip[0].projectItem.setOutPoint(outTime, 4);       
-            
-            project.activeSequence.videoTracks[0].insertClip(theClip[0].projectItem, 0);  
+
+            project.activeSequence.videoTracks[0].overwriteClip(theClip[0].projectItem, theClip[0].start);
             theClip[0].projectItem.clearInPoint();
             theClip[0].projectItem.clearOutPoint();
             frameArray.splice(randIndex, 1); // <--- Removes the frame from frameArray
