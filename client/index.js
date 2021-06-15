@@ -5,6 +5,9 @@ var csInterface = new CSInterface();
 var openButton = document.querySelector("#apply-button");
 openButton.addEventListener("click", randomizeFrames);
 
+var openButton = document.querySelector("#test-button");
+openButton.addEventListener("click", test);
+
 /* 3) Write a helper function to pass instructions to the ExtendScript side. */
 function randomizeFrames() {
   
@@ -32,4 +35,8 @@ function randomizeFrames() {
   filmIcon2.style.animation= "swap-2 0.7s"
   filmIcon3.style.animation= "swap-3 0.7s"
 
+}
+
+function test() {
+  csInterface.evalScript(test());
 }
