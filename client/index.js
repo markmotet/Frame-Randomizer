@@ -19,9 +19,9 @@ function randomizeFrames() {
   filmIcon3.style.animation = "swap-3 0.7s infinite";
 
   const framesPerCut = document.getElementById("frames-per-cut-input").value;
-  const colour = document.getElementById("colour-input").value;
+  const color = document.getElementById("color-input").value;
 
-  var inputString = "randomizeFrames(" + framesPerCut + ")";
+  var inputString = "randomizeFrames(" + framesPerCut + "," + color + ")";
 
   csInterface.evalScript(inputString);
 

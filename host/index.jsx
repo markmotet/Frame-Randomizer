@@ -1,11 +1,11 @@
 ﻿var project = app.project;
 
-function randomizeFrames(framesPerCut) {
+function randomizeFrames(framesPerCut, colorLabel) {
            
         var theClip = project.activeSequence.getSelection();
         theClip[0].projectItem.setOutPoint(framesToSeconds(1), 4);
         
-        // Construct an ordered array of frames
+        // Constructs an ordered array of frames
         var frameArray = [];
         var numFrames = secondsToFrames(theClip[0].duration.seconds);
         
@@ -15,17 +15,20 @@ function randomizeFrames(framesPerCut) {
             
             // Ensures that the duration stays the same if numFrames is not divisible by framesPerCut
             // Note: one segment might be fewer than framesPerCut frames long
-             if (outTime > theClip[0].outPoint.seconds) {
+            if (outTime > theClip[0].outPoint.seconds) {
                 outTime = theClip[0].outPoint.seconds;
-             }
+            }
             
             frameArray.push(new Frame(inTime, outTime));
         }
     
-        // Insert a random frame and remove the frame from frameArray to prevent duplicates
-        
         //project.createNewSequenceFromClips("Name", theClip[0].projectItem);
-        
+
+        // Saves the original ProjectItem color and sets the new color
+        const originalColorLabel = theClip[0].projectItem.getColorLabel();
+        theClip[0].projectItem.setColorLabel(colorLabel);
+
+        // Inserts a random frame and remove the frame from frameArray to prevent duplicates
         const length = frameArray.length
         for (i = 0; i < length; i++) {
             var randIndex = Math.ceil( (length - i) * Math.random()) - 1;
@@ -41,6 +44,7 @@ function randomizeFrames(framesPerCut) {
             theClip[0].projectItem.clearOutPoint();
             frameArray.splice(randIndex, 1); // <--- Removes the frame from frameArray
         }
+        theClip[0].projectItem.setColorLabel(originalColorLabel);
 }
 
 // Frame object that holds the start and end time of a frame in seconds
