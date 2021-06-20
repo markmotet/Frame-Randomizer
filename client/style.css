@@ -11,7 +11,6 @@ h1 {
     font-family: adobeCleanRegular;
     font-size: 10;
     text-align: center;
-    transition: color 1s;
     color: #8a8a8a;
 }
 
@@ -46,22 +45,53 @@ label {
     max-height: 30px;
 }
 
-.button {
+.apply-button {
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
     display: flex;
 
-    background-color: #232323;
+    background-color: transparent;
     color: #8a8a8a;
     border: 1px solid #8a8a8a;
     border-radius: 15px;
 }
 
-.button:hover {
+.apply-button:hover {
     background-color: #8a8a8a;
     color: #232323;
+
+    cursor: pointer;
+}
+
+#options {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.options-button {
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    display: flex;
+
+    background-color: transparent;
+    color: #8a8a8a;
+    border: none;
+
+    cursor: pointer;
+}
+
+.caret {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #8a8a8a transparent;
 }
 
 @keyframes swap-1 {

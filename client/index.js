@@ -5,6 +5,8 @@ var csInterface = new CSInterface();
 var applyButton = document.querySelector("#apply-button");
 applyButton.addEventListener("click", randomizeFrames);
 
+var moreOptionsButton = document.querySelector("#options-button");
+moreOptionsButton.addEventListener("click", toggleOptions);
 
 /* 3) Write a helper function to pass instructions to the ExtendScript side. */
 function randomizeFrames() {
@@ -14,19 +16,34 @@ function randomizeFrames() {
   const filmIcon3 = document.getElementById("film-icon-3");
 
   // Start frame swapping animation
-  filmIcon1.style.animation = "swap-1 0.7s infinite";
-  filmIcon2.style.animation = "swap-2 0.7s infinite";
-  filmIcon3.style.animation = "swap-3 0.7s infinite";
+  filmIcon1.style.animation = "swap-1 0.7s 2";
+  filmIcon2.style.animation = "swap-2 0.7s 2";
+  filmIcon3.style.animation = "swap-3 0.7s 2";
 
   const framesPerCut = document.getElementById("frames-per-cut-input").value;
   const color = document.getElementById("color-input").value;
 
   var inputString = "randomizeFrames(" + framesPerCut + "," + color + ")";
 
-  csInterface.evalScript(inputString);
+  csInterface.evalScript(inputString, test);
 
-  // End frame swapping animation
-  filmIcon1.style.animation = "swap-1 0.7s";
-  filmIcon2.style.animation = "swap-2 0.7s";
-  filmIcon3.style.animation = "swap-3 0.7s";
+}
+
+// Displays a warning message if no clips are selected
+function test(evalScriptReturn) {
+  if (evalScriptReturn == "EvalScript error.") {
+    alert("Please select a clip on the timeline.");
+  }
+}
+
+function toggleOptions() {
+
+  const options = document.getElementById("options"); 
+
+  if (options.style.display === "none") {
+    options.style.display = "block";
+  } 
+  else {
+    options.style.display = "none";
+  } 
 }
