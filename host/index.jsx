@@ -1,13 +1,16 @@
 ﻿var project = app.project;
 
 function randomizeFrames(framesPerCut, colorLabel) {
-           
+    
         var theClip = project.activeSequence.getSelection();
-        theClip[0].projectItem.setOutPoint(framesToSeconds(1), 4);
+        
+        $.write("Awooga" + project.activeSequence.getSettings().videoFrameRate.seconds + "\n") ;
+        $.write("Awossoga" + theClip[0].projectItem.getProjectMetadata() + "\n") ;
         
         // Constructs an ordered array of frames
         var frameArray = [];
         var numFrames = secondsToFrames(theClip[0].duration.seconds);
+        $.write(numFrames);
         
         for (i = 0; i < numFrames; i += framesPerCut) {
             var inTime = framesToSeconds(i) + theClip[0].inPoint.seconds;
@@ -21,8 +24,6 @@ function randomizeFrames(framesPerCut, colorLabel) {
             
             frameArray.push(new Frame(inTime, outTime));
         }
-    
-        //project.createNewSequenceFromClips("Name", theClip[0].projectItem);
 
         // Saves the original ProjectItem color and sets the new color
         const originalColorLabel = theClip[0].projectItem.getColorLabel();

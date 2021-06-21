@@ -15,10 +15,17 @@ function randomizeFrames() {
   const filmIcon2 = document.getElementById("film-icon-2");
   const filmIcon3 = document.getElementById("film-icon-3");
 
-  // Start frame swapping animation
-  filmIcon1.style.animation = "swap-1 0.7s 2";
-  filmIcon2.style.animation = "swap-2 0.7s 2";
-  filmIcon3.style.animation = "swap-3 0.7s 2";
+  // Stop frame swapping animation
+  filmIcon1.style.animation = "";
+  filmIcon2.style.animation = "";
+  filmIcon3.style.animation = "";
+
+  // Start frame swapping animation. setTimeout() required as a workaround.
+  setTimeout(() => {
+    filmIcon1.style.animation = "swap-1 0.7s 2";
+    filmIcon2.style.animation = "swap-2 0.7s 2";
+    filmIcon3.style.animation = "swap-3 0.7s 2";  
+  }, 100);
 
   const framesPerCut = document.getElementById("frames-per-cut-input").value;
   const color = document.getElementById("color-input").value;
