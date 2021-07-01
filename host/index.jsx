@@ -4,9 +4,6 @@ function randomizeFrames(framesPerCut, colorLabel) {
     
         var theClip = project.activeSequence.getSelection();
         
-        $.write("Awooga" + project.activeSequence.getSettings().videoFrameRate.seconds + "\n") ;
-        $.write("Awossoga" + theClip[0].projectItem.getProjectMetadata() + "\n") ;
-        
         // Constructs an ordered array of frames
         var frameArray = [];
         var numFrames = secondsToFrames(theClip[0].duration.seconds);
